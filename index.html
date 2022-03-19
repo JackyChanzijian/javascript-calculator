@@ -8,10 +8,26 @@
     <style>
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: min-content 1fr 1fr 1fr 1fr;
+            grid-template-areas: 
+                'result result result result'
+                'a b c d'
+                'e f g h'
+                'i j k l'
+                'm m n o'
+            ;
+            
             height: 100%;
             width: 50vw;
             height: 50vw;
+        }
+        #display {
+            grid-area: result;
+            
+            text-align: right;
+            vertical-align: bottom;
+            font-size: xx-large;
+            
         }
         #zero {
             grid-column: span 2 / auto;
@@ -20,13 +36,24 @@
 </head>
 <body>
     <section class="grid">
+        <input id="display" value="0">
         <button>7</button><button>8</button><button>9</button><button>/</button>
         <button>4</button><button>5</button><button>6</button><button>*</button>
         <button>1</button><button>2</button><button>3</button><button>-</button>
         <button id="zero">0</button><button>=</button><button>+</button>
     </section>
     <script>
-        buttons = document.querySelectorAll("button")
+        const buttons = document.querySelectorAll("button")
+        const display = document.getElementById("display")
+        const result = {}
+        Object.defineProperty(result, "value", {
+            get() {
+                return display.value;
+            },
+            set(newValue) {
+                display.value = newValue;
+            }
+        })
         buttons.forEach((button) => {
             button.addEventListener('click', function(){ buttonClicked(button) })
         })
@@ -35,4 +62,4 @@
         }
     </script>
 </body>
-</html>
+</html> 

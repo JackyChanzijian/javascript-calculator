@@ -5,67 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        :root {
-            --red: #ED1C24;
-            --aqua: #1B998B;
-            --yellow: #F1D302;
-            --blue: #235789;
-            --white: #FDFFFC;
-            --purple: #814886;
-        }
-        html {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height:100%;
-        }
-        body {
-            padding: 0;
-            margin: 0;
-            background-color: var(--white);
-        }
-        .grid {
-            display: grid;
-            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-areas: 
-                'result result result result'
-                'a b c d'
-                'e f g h'
-                'i j k l'
-                'm m n o'
-            ;
-            width: 300px;
-            height: 500px;
-        }
-        #display {
-            grid-area: result;
-            
-            text-align: right;
-            vertical-align: bottom;
-            font-size: xx-large;
-
-            background-color: var(--aqua);
-            color: var(--white);
-            padding: 10px;
-        }
-        .grid button {
-            background-color: var(--yellow);
-            font-weight: bold;
-            font-size: x-large;
-            color: var(--white);
-        }
-        .operator {
-            background-color: var(--blue) !important;
-        }
-        #zero {
-            grid-column: span 2;
-        }
-        #equal {
-            background-color: var(--red );
-        }
-    </style>
+    <script src="app.js" async></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section class="grid">
@@ -75,51 +16,5 @@
         <button>1</button><button>2</button><button>3</button><button class="operator">-</button>
         <button id="zero">0</button><button id="equal">=</button><button class="operator">+</button>
     </section>
-    <script>
-        const buttons = document.querySelectorAll("button")
-        const display = document.getElementById("display")
-        let lastValue = 0
-        let lastOperator = "+"  //The first number should be added into result
-        setInterval(() => {
-           
-        });
-        buttons.forEach((button) => {
-            button.addEventListener('click', function(){ buttonClicked(button.innerHTML) }) //Add function on click base on its value
-        })
-        function buttonClicked(newValue) {
-            //If it's number
-            if (!isNaN(newValue)) {
-                display.value = Number(display.value) * 10 + Number(newValue)   //Add number directly after the display
-            }
-            //If it's equal sign
-            else if (newValue === "=") {
-                display.value = getResult(lastValue, Number(display.value), lastOperator)   //Show the result in the display
-                lastValue = Number(display.value)
-                lastOperator = "="
-            }
-            //If it's a operator other than equal
-            else {
-                //Record the operator and value, also set the display to 0
-                if (lastOperator != "=") lastValue = getResult(lastValue, Number(display.value), lastOperator)  //Prevent calculate again if last operation is equal
-                lastOperator = newValue
-                display.value = "0"
-            }
-        }
-        //Return a number base number and operator
-        function getResult(firstNum, secondNum, operator) {
-            switch (operator) {
-                case "+":
-                    return firstNum + secondNum
-                case "-":
-                    return firstNum - secondNum
-                case "*":
-                    return firstNum * secondNum
-                case "/":
-                    return firstNum / secondNum
-                default:
-                    break
-            }
-        }
-    </script>
 </body>
 </html> 

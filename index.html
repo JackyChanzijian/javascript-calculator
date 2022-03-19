@@ -10,11 +10,11 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             height: 100%;
-            width: fit-content;
+            width: 50vw;
+            height: 50vw;
         }
-        button {
-            height: 100px;
-            width: 100px;
+        #zero {
+            grid-column: span 2 / auto;
         }
     </style>
 </head>
@@ -23,7 +23,7 @@
         <button>7</button><button>8</button><button>9</button><button>/</button>
         <button>4</button><button>5</button><button>6</button><button>*</button>
         <button>1</button><button>2</button><button>3</button><button>-</button>
-        <button>0</button><button>.</button><button>=</button><button>+</button>
+        <button id="zero">0</button><button>=</button><button>+</button>
     </section>
     <script>
         

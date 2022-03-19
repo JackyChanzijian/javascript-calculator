@@ -45,20 +45,37 @@
     <script>
         const buttons = document.querySelectorAll("button")
         const display = document.getElementById("display")
-        const result = {}
-        Object.defineProperty(result, "value", {
-            get() {
-                return display.value;
-            },
-            set(newValue) {
-                display.value = newValue;
-            }
-        })
+        let lastValue = 0
+        let operator = ""
         buttons.forEach((button) => {
-            button.addEventListener('click', function(){ buttonClicked(button) })
+            button.addEventListener('click', function(){ buttonClicked(button.innerHTML) })
         })
-        function buttonClicked(button) {
-            alert(button.innerHTML)
+        function buttonClicked(newValue) {
+            if (!isNaN(newValue)) {
+                display.value = Number(display.value) * 10 + Number(newValue)
+            }
+            else if (newValue === "="){
+                display.value = getResult(lastValue, Number(display.value), operator)
+            }
+            else {
+                operator = newValue
+                lastValue = Number(display.value)
+                display.value = "0"
+            }
+        }
+        function getResult(firstNum, secondNum, operator) {
+            switch (operator) {
+                case "+":
+                    return firstNum + secondNum
+                case "-":
+                    return firstNum - secondNum
+                case "*":
+                    return firstNum * secondNum
+                case "/":
+                    return firstNum / secondNum
+                default:
+                    break
+            }
         }
     </script>
 </body>

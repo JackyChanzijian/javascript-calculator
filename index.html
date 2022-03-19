@@ -26,7 +26,13 @@
         <button id="zero">0</button><button>=</button><button>+</button>
     </section>
     <script>
-        
+        buttons = document.querySelectorAll("button")
+        buttons.forEach((button) => {
+            button.addEventListener('click', function(){ buttonClicked(button) })
+        })
+        function buttonClicked(button) {
+            alert(button.innerHTML)
+        }
     </script>
 </body>
 </html>

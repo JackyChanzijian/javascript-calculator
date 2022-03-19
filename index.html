@@ -27,7 +27,8 @@
         }
         .grid {
             display: grid;
-            grid-template-rows: max-content 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             grid-template-areas: 
                 'result result result result'
                 'a b c d'
@@ -35,10 +36,8 @@
                 'i j k l'
                 'm m n o'
             ;
-            
-            width: 50vw;
-            height: 50vw;
-            
+            width: 300px;
+            height: 500px;
         }
         #display {
             grid-area: result;
@@ -49,7 +48,7 @@
 
             background-color: var(--aqua);
             color: var(--white);
-            padding: 20px 10px;
+            padding: 10px;
         }
         .grid button {
             background-color: var(--yellow);
@@ -61,7 +60,7 @@
             background-color: var(--blue) !important;
         }
         #zero {
-            grid-column: span 2 / auto;
+            grid-column: span 2;
         }
         #equal {
             background-color: var(--red );
